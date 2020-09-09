@@ -15,6 +15,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<IOMessage> {
         ctx.writeAndFlush(MessageFactory.requestSterilizerId());
     }
 
+    @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, IOMessage ioMessage) throws Exception {
         if (ChannelManager.getSterilizerIdByChannel(channelHandlerContext.channel()) == null
                 && ChannelManager.getStateByChannel(channelHandlerContext.channel()) == State.GETTING_S_ID) {
@@ -42,6 +43,4 @@ public class ServerHandler extends SimpleChannelInboundHandler<IOMessage> {
         ChannelManager.remove(ctx.channel());
         ctx.close();
     }
-
-
 }

@@ -9,6 +9,7 @@ import io.netty.handler.codec.ReplayingDecoder;
 import java.util.List;
 
 public class ServerDecoder extends ReplayingDecoder<Void> {
+    @Override
     protected void decode(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf, List<Object> list) throws Exception {
         byte[] prefixBytes = new byte[2];
         byteBuf.readBytes(prefixBytes);
